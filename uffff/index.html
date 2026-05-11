@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Día Mamá 💗</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Quicksand', sans-serif;
+}
+
+body{
+    background:linear-gradient(180deg,#ffd9ea,#d8fff5,#fff6fb);
+    overflow-x:hidden;
+    color:#6d5b66;
+    min-height:100vh;
+}
+
+/* FONDO */
+
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+/* CORAZONES */
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    animation:float linear infinite;
+    opacity:0.7;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    20%{
+        opacity:0.8;
+    }
+
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* PORTADA */
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    transition:1s;
+}
+
+.hero.hide{
+    opacity:0;
+    transform:scale(1.2);
+    pointer-events:none;
+}
+
+.hero h1{
+    font-size:4rem;
+    color:#ff6fa5;
+    text-shadow:0 0 12px rgba(255,111,165,0.35);
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:1.3rem;
+    margin-bottom:40px;
+}
+
+.gift-box{
+    font-size:120px;
+    cursor:pointer;
+    animation:bounce 2s infinite;
+    transition:0.5s;
+}
+
+.gift-box:hover{
+    transform:scale(1.1);
+}
+
+.gift-box.open{
+    transform:scale(1.5) rotate(15deg);
+    opacity:0;
+}
+
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+/* CONTENIDO */
+
+.content{
+    display:none;
+    padding:60px 20px;
+    animation:fadeIn 2s;
+}
+
+.sections{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+/* TARJETAS */
+
+.card{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(8px);
+    width:320px;
+    padding:30px;
+    border-radius:35px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"✨";
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:25px;
+}
+
+.card h2{
+    margin-bottom:25px;
+    font-size:2rem;
+}
+
+.icon{
+    font-size:90px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.icon:hover{
+    transform:scale(1.1);
+}
+
+/* CARTA */
+
+.letter-container{
+    margin-top:25px;
+    display:none;
+    animation:fadeIn 1s;
+}
+
+.paper{
+    background:#fff9fc;
+    padding:25px;
+    border-radius:20px;
+    margin-top:-20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    animation:slideUp 1s;
+}
+
+@keyframes slideUp{
+
+    from{
+        transform:translateY(80px);
+        opacity:0;
+    }
+
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+/* GALERÍA */
+
+.gallery{
+    display:none;
+    margin-top:25px;
+    animation:fadeIn 1s;
+}
+
+.polaroid{
+    background:white;
+    padding:10px 10px 25px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transform:rotate(-2deg);
+    transition:0.3s;
+}
+
+.polaroid:nth-child(even){
+    transform:rotate(2deg);
+}
+
+.polaroid:hover{
+    transform:scale(1.03);
+}
+
+.polaroid img{
+    width:100%;
+    border-radius:10px;
+}
+
+.polaroid video{
+    width:100%;
+    border-radius:10px;
+}
+
+.caption{
+    margin-top:10px;
+    font-size:0.95rem;
+}
+
+/* MENSAJE FINAL */
+
+.final-message{
+    text-align:center;
+    margin-top:100px;
+    padding-bottom:80px;
+    font-size:2rem;
+    color:#ff6fa5;
+    text-shadow:0 0 12px rgba(255,111,165,0.35);
+}
+
+
+/* ANIMACIONES */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .gift-box{
+        font-size:90px;
+    }
+
+    .card{
+        width:100%;
+        max-width:340px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- FONDO -->
+<div class="background" id="background"></div>
+
+<!-- PORTADA -->
+<section class="hero" id="hero">
+
+    <h1>Feliz Día Mamá 💗</h1>
+
+    <p>
+        Te hicimos esto con muchísimo amor y pensando 
+        mucho en ti 🌸
+    </p>
+
+    <div class="gift-box" id="gift" onclick="openGift()">
+        🎁
+    </div>
+
+</section>
+
+<!-- CONTENIDO -->
+<section class="content" id="content">
+
+    <div class="sections">
+
+        <!-- CARTA -->
+        <div class="card">
+
+            <h2>💌 Carta</h2>
+
+            <div class="icon" onclick="openLetter()">
+                ✉️
+            </div>
+
+            <div class="letter-container" id="letterContainer">
+
+                <div class="paper">
+
+                    <p>
+                        Mamá <br><br>
+
+                        Quiero decirte que eres una mujer muy admirable. Eres simpática, amable, fuerte, decidida, divertida y siempre estás preocupada por los demás. Cada día te esfuerzas muchísimo en todo lo que haces, ya sea por nosotros, por la casa, por el papá o incluso hasta por la luna. De verdad admiro mucho cómo siempre das lo mejor de ti aunque estés cansada. Eres una madre luchona, empoderada y con instinto de madre leona 🗣🗣🔥🔥 JKAJSKAJ <br></br>
+                        Gracias por preocuparte siempre de cada uno, por alimentarnos, escucharnos, aconsejarnos y cuidarnos todos los días. Tal vez a veces somos desordenados, nos portamos mal o te hacemos enojar, pero quiero que sepas que siempre te vamos a querer muchísimo y que valoramos cada esfuerzo que haces por nosotros. <br></br>
+                        Algo que amo mucho de ti es tu cariño. Tus abrazos, tus palabras y tu apoyo hacen que nos sintamos queridos y seguros. Aunque a veces nosotros no seamos de decir mucho “te quiero” o “te amo”, valoramos cada una de esas palabras cuando se mencionan y vienen de ti, porque viene desde el corazón.
+                        También sé todo lo que te has sacrificado por nosotros. Las veces que nos enfermamos y nos llevas al médico, cuando nos cuidas, cuando nos das remedios, etc., todo eso lo veo y lo valoro muchísimo. Gracias por haber decidido cuidarnos y acompañarnos siempre. <br></br>
+                        Para mí, uno de los momentos más lindos contigo es cuando te abrazo y te digo que te quiero mucho, o cuando hablo contigo de cosas personales y me escuchas sin juzgarme. Gracias por aconsejarme, apoyarme y hacerme sentir comprendida. <br></br>
+                        El Tomás también quería que supieras que sus momentos favoritos contigo son cuando lo abrazas y lo consuelas cuando está mal, cuando lo defiendes y cuando lo felicitas por sus notas. Él ama mucho que seas cariñosa con él porque lo hace sentirse querido y feliz (al igual que yo). Y estoy segura de que el Francisco también siente todo ese amor y dedicación que le entregas cada día. <br></br>
+                        Quiero que sepas que cuando seamos más grandes, nosotros también queremos cuidarte a ti. Queremos acompañarte cuando estés mal, ayudarte tanto emocionalmente como físicamente, aconsejarte, abrazarte y darte todo el amor que nos has dado. Queremos darte muchas cosas lindas, mucho cariño, tranquilidad y apoyo, porque realmente te lo mereces. <br></br>
+                        De verdad estoy muy agradecida de que seas mi mamá y la persona que me ha cuidado toda mi vida. Gracias por estos casi 18 años de amor, paciencia, esfuerzo y dedicación. Estoy muy orgullosa de compartir mi vida contigo y nunca dejaré de agradecer tener una mamá como tú. <br></br>
+                        Prometo ayudarte siempre, devolverte la mano y estar para ti en todo lo que necesites. Quiero que sepas que conmigo siempre puedes confiar y contar con lo que sea, porque así como tú siempre estuviste para mí, yo también quiero estar para ti. <br></br>
+                        Te amo muchísimo y sinceramente creo que eres la mejor mamá del mundo 🌸💗
+
+<br><br>
+
+                        Espero que hoy haya sido un lindo día y algo distinto al resto ejeje 
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FOTOS -->
+        <div class="card">
+
+            <h2>📸 Fotos</h2>
+
+            <div class="icon" onclick="openGallery()">
+                🖼️
+            </div>
+
+            <div class="gallery" id="gallery">
+
+                <div class="polaroid">
+
+                    <img src="img/titi.png">
+
+                    <div class="caption">
+                        La 1ra y última niña que creaste (buena decisión.. Además soy tan cute, lo sé 🤞🏻😳)
+                    </div>
+
+                </div>
+
+                <div class="polaroid">
+
+                    <img src="img/tei.png">
+
+                    <div class="caption">
+                        Cuando rescataron a ese niño rata indigente de la calle y que ahora llamo hermano
+                    </div>
+
+                </div>
+
+
+                <div class="polaroid">
+
+                    <img src="img/tres.png">
+
+                    <div class="caption">
+                        Ese duende feito pero que luego fue lindo (supongo 😳)
+                    </div>
+
+                </div>
+
+                <div class="polaroid">
+
+                  <video controls>
+
+                  <source src="video/Snapchat-925441739.mp4" type="video/mp4">
+
+                  </video>
+
+                     <div class="caption">
+                        Las 3 criaturas pero ya más grandes y pros
+                     </div>
+
+                
+                </div>
+                
+                <div class="polaroid">
+
+                    <img src="img/pti.png">
+
+                    <div class="caption">
+                        Te amamos muchísimoooooooooooooo, mamáaaaaaaaa
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MENSAJE FINAL -->
+
+    <div class="final-message">
+        Gracias por ser la mejor mamá del mundo 🌷💗
+    </div>
+
+</section>
+
+<!-- MÚSICA -->
+
+<audio id="music" loop>
+
+    <!-- CAMBIA EL NOMBRE POR TU CANCIÓN -->
+
+    <source src="music/Hopelessly Devoted To You but the version everyone wanted [TikTok Version]-inside-1778456874492.mp4" type="audio/mpeg">
+
+</audio>
+
+
+<script>
+
+/* REGALO */
+
+function openGift(){
+
+    const hero = document.getElementById("hero");
+
+    const gift = document.getElementById("gift");
+
+    const content = document.getElementById("content");
+
+    const music = document.getElementById("music");
+
+    /* REPRODUCIR MÚSICA */
+
+    music.play();
+
+    gift.classList.add("open");
+
+    hero.classList.add("hide");
+
+    setTimeout(() => {
+
+        hero.style.display = "none";
+
+        content.style.display = "block";
+
+    },1000);
+}
+
+/* CARTA */
+
+function openLetter(){
+
+    const letter = document.getElementById("letterContainer");
+
+    if(letter.style.display === "block"){
+
+        letter.style.display = "none";
+
+    } else {
+
+        letter.style.display = "block";
+    }
+}
+
+/* GALERÍA */
+
+function openGallery(){
+
+    const gallery = document.getElementById("gallery");
+
+    if(gallery.style.display === "block"){
+
+        gallery.style.display = "none";
+
+    } else {
+
+        gallery.style.display = "block";
+    }
+}
+
+/* MÚSICA */
+
+function playMusic(){
+
+    const music = document.getElementById("music");
+
+    music.play();
+}
+
+/* CORAZONES */
+
+const background = document.getElementById("background");
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = ["💗","🌸","✨","🎀"][Math.floor(Math.random()*4)];
+
+    heart.style.left = Math.random()*100 + "vw";
+
+    heart.style.fontSize = Math.random()*20 + 20 + "px";
+
+    heart.style.animationDuration = Math.random()*5 + 5 + "s";
+
+    background.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    },10000);
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
